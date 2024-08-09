@@ -22,7 +22,7 @@
 		"googleapis": "^84.0.0",
 		"graphql": "^16.5.0",
 		"helmet": "^4.6.0",
-		"mysql2": "^2.3.0",
+		"mysql2": "^3.9.7",
 		"node": "^12.18.3",
 		"node-fetch": "^2.6.7",
 		"node-fetch-cache": "^3.0.3",
