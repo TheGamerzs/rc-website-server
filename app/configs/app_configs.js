@@ -17,7 +17,7 @@ const AppConfigs = {
         UNLINKED: -1,
     },
     CEOID: "404650985529540618",
-    CTOID: "330000865215643658",
+    CTOID: "730142125181894657",
     token_max_age: 1209600,
 };
 
