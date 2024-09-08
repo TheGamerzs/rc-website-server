@@ -21,6 +21,11 @@ const AppConfigs = {
     token_max_age: 1209600,
 };
 
+AppConfigs.server_id_map = {
+    main: AppConfigs.server_order[0],
+    beta: AppConfigs.server_order[1],
+};
+
 // CFX Links
 //   S2: https://tycoon-2epova.users.cfx.re/
 //   S5: https://tycoon-njyvop.users.cfx.re/
