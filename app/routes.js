@@ -104,8 +104,8 @@ export const routes = (db, app) => {
 					app: [
 						AppConfigs.permissions.OWNER,
 						AppConfigs.permissions.MANAGER,
-						AppConfigs.permissions.MEMBER
-					]
+                        AppConfigs.permissions.MEMBER,
+                    ],
 				},
 				req,
 				() => api.Benny.search(req, res)
@@ -224,8 +224,8 @@ export const routes = (db, app) => {
 						AppConfigs.permissions.OWNER,
 						AppConfigs.permissions.MANAGER,
 						AppConfigs.permissions.MEMBER,
-						AppConfigs.permissions.GUEST
-					]
+                        AppConfigs.permissions.GUEST,
+                    ],
 				},
 				req,
 				() => api.Tycoon.getId(req, res)
@@ -273,7 +273,13 @@ export const routes = (db, app) => {
 		}
 	});
 
-	app.get('/api/tycoon/storages', function (req, res) {
+    app.post("/api/publickey", function (req, res) {
+        if (!req.user || !req.user.in_game_id) return unauthorizedResponse(res);
+
+        api.Auth.setPublicKey(req, res);
+    });
+
+    app.get("/api/tycoon/storages", function (req, res) {
 		try {
 			authenticateRoute(
 				{
@@ -281,8 +287,8 @@ export const routes = (db, app) => {
 						AppConfigs.permissions.OWNER,
 						AppConfigs.permissions.MANAGER,
 						AppConfigs.permissions.MEMBER,
-						AppConfigs.permissions.GUEST
-					]
+                        AppConfigs.permissions.GUEST,
+                    ],
 				},
 				req,
 				() => api.Tycoon.getStorages(req, res)
