@@ -21,6 +21,7 @@ export const typeDef = gql`
 	extend type Query {
 		authorizedUser: AuthorizedUser!
 		authorizedUserRank: Int!
+        authorizedUserPublicKey: String
 	}
 `;
 
@@ -54,8 +55,26 @@ const AuthResolvers = {
 						}
 					})
 					.then(member => member.dataValues.rank)
-		)
-	}
+		),
+        authorizedUserPublicKey: authenticateResolver(
+            {
+                app: [
+                    AppConfigs.permissions.OWNER,
+                    AppConfigs.permissions.MANAGER,
+                    AppConfigs.permissions.MEMBER,
+                    AppConfigs.permissions.GUEST,
+                ],
+            },
+            (parent, args, { db, user }, info) =>
+                db.website
+                    .findOne({
+                        where: {
+                            discord_id: user.id,
+                        },
+                    })
+                    .then((member) => member.dataValues.public_key)
+        ),
+    },
 };
 
 export default AuthResolvers;
