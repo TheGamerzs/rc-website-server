@@ -1,7 +1,7 @@
 import {gql} from "apollo-server-express";
-import {authenticateResolver} from "../../domain/auth/resolvers/authenticateResolver";
-import AppConfigs from "../../configs/app_configs"
-import { getTopTurnins } from "./CompanyQueries/TopTurnins";
+import {authenticateResolver} from "../../domain/auth/resolvers/authenticateResolver.js";
+import AppConfigs from "../../configs/app_configs.js"
+import { getTopTurnins } from "./CompanyQueries/TopTurnins.js";
 
 export const typeDef = gql`
     type TopTurnin {

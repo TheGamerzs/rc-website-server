@@ -1,7 +1,7 @@
 // @flow
 
-import AppConfigs from "../../configs/app_configs";
-import Entity from "../lib/entity";
+import AppConfigs from "../../configs/app_configs.js";
+import Entity from "../lib/Entity.js";
 
 export default class Player extends Entity {
     constructor(makeApiRequest) {

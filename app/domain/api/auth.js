@@ -1,10 +1,10 @@
-import Entity from "../Entity";
-import Sdk from "../../tycoon-sdk/lib/sdk";
-import { accessTokenResolver } from "../auth/resolvers/accessTokenResolver";
-import { discordResolver } from "../auth/resolvers/discordResolver";
-import { registerUser } from "../auth/registration/registerUser";
-import { removeUser } from "../auth";
-import { webUserResolver } from "../auth/resolvers/webUserResolver";
+import Entity from "../Entity.js";
+import Sdk from "../../tycoon-sdk/lib/sdk.js";
+import { accessTokenResolver } from "../auth/resolvers/accessTokenResolver.js";
+import { discordResolver } from "../auth/resolvers/discordResolver.js";
+import { registerUser } from "../auth/registration/registerUser.js";
+import { removeUser } from "../auth/index.js";
+import { webUserResolver } from "../auth/resolvers/webUserResolver.js";
 
 export default class Auth extends Entity {
     sdk = new Sdk();

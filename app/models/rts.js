@@ -1,26 +1,28 @@
-module.exports = (sequelize, DataTypes) => {
-    const Rts = sequelize.define('rts', {
+const init = (sequelize, DataTypes) => {
+    const Rts = sequelize.define(
+        "rts",
+        {
             id: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
-                allowNull: false
+                allowNull: false,
             },
             member_id: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                unique: true
+                unique: true,
             },
             vouchers: {
                 type: DataTypes.BIGINT,
                 allowNull: false,
-                defaultValue: 0
+                defaultValue: 0,
             },
             worth: {
                 type: DataTypes.BIGINT,
                 allowNull: false,
-                defaultValue: 0
-            }
+                defaultValue: 0,
+            },
         },
         {
             freezeTableName: true,
@@ -28,4 +30,6 @@ module.exports = (sequelize, DataTypes) => {
     );
 
     return Rts;
-}
+};
+
+export default init;

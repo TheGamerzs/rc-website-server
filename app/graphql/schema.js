@@ -1,26 +1,26 @@
-import { typeDef as ApplicationType } from './resolvers/Application';
-import { typeDef as AuthType } from './resolvers/Auth';
-import { typeDef as CompanyType } from './resolvers/Company';
-import { typeDef as ManagerType } from './resolvers/Manager';
-import { typeDef as MemberType } from './resolvers/Member';
-import { typeDef as PagedType } from './resolvers/Paged';
-import { typeDef as PayoutType } from './resolvers/Payout';
-import { typeDef as PigsType } from './resolvers/Pigs';
-import { typeDef as RtsType } from './resolvers/Rts';
-import { typeDef as WebsiteType } from './resolvers/Website';
-import { gql } from 'apollo-server-express';
+import { typeDef as ApplicationType } from "./resolvers/Application.js";
+import { typeDef as AuthType } from "./resolvers/Auth.js";
+import { typeDef as CompanyType } from "./resolvers/Company.js";
+import { typeDef as ManagerType } from "./resolvers/Manager.js";
+import { typeDef as MemberType } from "./resolvers/Member.js";
+import { typeDef as PagedType } from "./resolvers/Paged.js";
+import { typeDef as PayoutType } from "./resolvers/Payout.js";
+import { typeDef as PigsType } from "./resolvers/Pigs.js";
+import { typeDef as RtsType } from "./resolvers/Rts.js";
+import { typeDef as WebsiteType } from "./resolvers/Website.js";
+import { gql } from "apollo-server-express";
 
 // graphql won't allow an empty type, so we give it a single empty param
 const Query = gql`
-	type Query {
-		_empty: String
-	}
+    type Query {
+        _empty: String
+    }
 `;
 
 const Mutation = gql`
-	type Mutation {
-		_empty: String
-	}
+    type Mutation {
+        _empty: String
+    }
 `;
 export const typeDefs = gql`
     scalar Date,

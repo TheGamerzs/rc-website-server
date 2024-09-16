@@ -1,5 +1,5 @@
-import accessHistory from "../index";
-import AppConfigs from "../../../configs/app_configs";
+import accessHistory from "../index.js";
+import AppConfigs from "../../../configs/app_configs.js";
 
 const length = 32;
 const chars = "abcdefghijkmnopqrstuvwxyz023456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";

@@ -1,6 +1,6 @@
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-import {sendStaffNotfication} from "../../../http/log"
-import Api from "../../../domain/Api"
+import {sendStaffNotfication} from "../../../http/log.js"
+import Api from "../../../domain/Api.js"
 const api = new Api(null, null)
 
 export const setApplicantContacted = (db, user, id) => {

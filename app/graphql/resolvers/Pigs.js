@@ -1,6 +1,6 @@
-import {gql} from "apollo-server-express";
-import {authenticateResolver} from "../../domain/auth/resolvers/authenticateResolver";
-import AppConfigs from "../../configs/app_configs"
+import { gql } from "apollo-server-express";
+import { authenticateResolver } from "../../domain/auth/resolvers/authenticateResolver.js";
+import AppConfigs from "../../configs/app_configs.js";
 
 export const typeDef = gql`
     type PigsCashout {
@@ -20,12 +20,22 @@ export const typeDef = gql`
     extend type Query {
         getAuthUserPigsVouchers: PigsCashout!
     }
-`
+`;
 
 const PigsCashoutResolvers = {
     Query: {
-        getAuthUserPigsVouchers: authenticateResolver({app: [AppConfigs.permissions.OWNER,AppConfigs.permissions.MANAGER,AppConfigs.permissions.MEMBER]}, (parent, args, {db, user}, info) => db.pigs.findOne({where: {member_id: user.member_id}}))
-    }
-}
+        getAuthUserPigsVouchers: authenticateResolver(
+            {
+                app: [
+                    AppConfigs.permissions.OWNER,
+                    AppConfigs.permissions.MANAGER,
+                    AppConfigs.permissions.MEMBER,
+                ],
+            },
+            (parent, args, { db, user }, info) =>
+                db.pigs.findOne({ where: { member_id: user.member_id } })
+        ),
+    },
+};
 
-export default PigsCashoutResolvers
+export default PigsCashoutResolvers;

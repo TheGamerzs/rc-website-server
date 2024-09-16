@@ -1,8 +1,8 @@
-import AppConfigs from "../../../../configs/app_configs"
+import AppConfigs from "../../../../configs/app_configs.js";
 
 const guestPerms = {
-    "permission": AppConfigs.permissions["GUEST"],
-    "permission_title": "GUEST"
-}
+    permission: AppConfigs.permissions["GUEST"],
+    permission_title: "GUEST",
+};
 
 export default guestPerms;

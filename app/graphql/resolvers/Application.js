@@ -1,9 +1,9 @@
 import {gql} from "apollo-server-express";
-import {authenticateResolver} from "../../domain/auth/resolvers/authenticateResolver";
-import {getActiveApplicants} from "./ApplicationQueries/GetActiveApplicants"
-import AppConfigs from "../../configs/app_configs"
-import {setApplicantContacted, setApplicantRejected, updateApplicantStatusInfo} from "./ApplicationQueries/SetApplicantStatus"
-import { CompletedReferralsType, getCompletedReferrals, getReferralDetails, markRefAsPaid, getActiveReferrals, changeRefID, getAuthUserActiveReferrals } from "./ApplicationQueries/Referrals";
+import {authenticateResolver} from "../../domain/auth/resolvers/authenticateResolver.js";
+import {getActiveApplicants} from "./ApplicationQueries/GetActiveApplicants.js"
+import AppConfigs from "../../configs/app_configs.js"
+import {setApplicantContacted, setApplicantRejected, updateApplicantStatusInfo} from "./ApplicationQueries/SetApplicantStatus.js"
+import { CompletedReferralsType, getCompletedReferrals, getReferralDetails, markRefAsPaid, getActiveReferrals, changeRefID, getAuthUserActiveReferrals } from "./ApplicationQueries/Referrals.js";
 
 export const typeDef = gql`
     type Application {

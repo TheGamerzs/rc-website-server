@@ -1,6 +1,6 @@
-import {gql} from "apollo-server-express";
-import {authenticateResolver} from "../../domain/auth/resolvers/authenticateResolver";
-import AppConfigs from "../../configs/app_configs"
+import { gql } from "apollo-server-express";
+import { authenticateResolver } from "../../domain/auth/resolvers/authenticateResolver.js";
+import AppConfigs from "../../configs/app_configs.js";
 
 export const typeDef = gql`
     type Manager {
@@ -29,26 +29,42 @@ export const typeDef = gql`
         createdAt: Date!
         member: Member!
     }
-    
+
     extend type Query {
-        getAuthUserCashout: Manager!,
+        getAuthUserCashout: Manager!
         getActiveManagers: [ManagerInfo]!
         getAllManagers: [ManagerInfo]!
     }
-`
+`;
 
 const ManagersResolvers = {
     Query: {
-        getAuthUserCashout: authenticateResolver({app: [AppConfigs.permissions.OWNER,AppConfigs.permissions.MANAGER]}, (parent, args, {db, user}, info) => db.managers.findByPk(user.manager_id)),
-        getActiveManagers: authenticateResolver({app: [AppConfigs.permissions.OWNER]}, (parent, args, {db}, info) => db.managers.findAll({ 
-            include: [{ model: db.members, as: 'member' }],
-            where: {active: true}})
+        getAuthUserCashout: authenticateResolver(
+            {
+                app: [
+                    AppConfigs.permissions.OWNER,
+                    AppConfigs.permissions.MANAGER,
+                ],
+            },
+            (parent, args, { db, user }, info) =>
+                db.managers.findByPk(user.manager_id)
         ),
-        getAllManagers: authenticateResolver({app: [AppConfigs.permissions.OWNER]}, (parent, args, {db}, info) => db.managers.findAll({ 
-            include: [{ model: db.members, as: 'member' }],
-            })
-        )
-    }
-}
+        getActiveManagers: authenticateResolver(
+            { app: [AppConfigs.permissions.OWNER] },
+            (parent, args, { db }, info) =>
+                db.managers.findAll({
+                    include: [{ model: db.members, as: "member" }],
+                    where: { active: true },
+                })
+        ),
+        getAllManagers: authenticateResolver(
+            { app: [AppConfigs.permissions.OWNER] },
+            (parent, args, { db }, info) =>
+                db.managers.findAll({
+                    include: [{ model: db.members, as: "member" }],
+                })
+        ),
+    },
+};
 
-export default ManagersResolvers
+export default ManagersResolvers;

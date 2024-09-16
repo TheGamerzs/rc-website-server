@@ -1,8 +1,7 @@
-import AppConfigs from "../../configs/app_configs";
-import Entity from "../Entity";
-import { getItemInfo } from "../tycoon/itemInfo";
-import sdk from "../../tycoon-sdk/TycoonSDK";
-import { sequelize } from "../../models";
+import AppConfigs from "../../configs/app_configs.js";
+import Entity from "../Entity.js";
+import { getItemInfo } from "../tycoon/itemInfo.js";
+import sdk from "../../tycoon-sdk/TycoonSDK.js";
 
 export default class Tycoon extends Entity {
     constructor(db, app, api) {

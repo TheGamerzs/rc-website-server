@@ -1,6 +1,6 @@
-import {gql} from "apollo-server-express";
-import {authenticateResolver} from "../../domain/auth/resolvers/authenticateResolver";
-import AppConfigs from "../../configs/app_configs"
+import { gql } from "apollo-server-express";
+import { authenticateResolver } from "../../domain/auth/resolvers/authenticateResolver.js";
+import AppConfigs from "../../configs/app_configs.js";
 
 export const typeDef = gql`
     type Payout {
@@ -38,34 +38,66 @@ export const typeDef = gql`
         createdAt: Date!
         member: Member!
     }
-    
+
     extend type Query {
         getAuthUserTurnins: [PayoutInfo]!
         getAuthUserPayouts: [PayoutInfo]!
         getManagerPayouts(manager_id: Int!): [SimplePayout]!
         getMemberPayouts(member_id: Int!): [PayoutInfo]!
     }
-`
+`;
 
 const PayoutsResolvers = {
     Query: {
-        getAuthUserTurnins: authenticateResolver({app: [AppConfigs.permissions.OWNER,AppConfigs.permissions.MANAGER,AppConfigs.permissions.MEMBER]}, (parent, args, {db, user}, info) => db.payout.findAll({ 
-            include: {all: true, nested: true },
-            where: {member_id: user.member_id}})
+        getAuthUserTurnins: authenticateResolver(
+            {
+                app: [
+                    AppConfigs.permissions.OWNER,
+                    AppConfigs.permissions.MANAGER,
+                    AppConfigs.permissions.MEMBER,
+                ],
+            },
+            (parent, args, { db, user }, info) =>
+                db.payout.findAll({
+                    include: { all: true, nested: true },
+                    where: { member_id: user.member_id },
+                })
         ),
-        getAuthUserPayouts: authenticateResolver({app: [AppConfigs.permissions.OWNER,AppConfigs.permissions.MANAGER]}, (parent, args, {db, user}, info) => db.payout.findAll({ 
-            include: {all: true, nested: true },
-            where: {manager_id: user.manager_id}})
+        getAuthUserPayouts: authenticateResolver(
+            {
+                app: [
+                    AppConfigs.permissions.OWNER,
+                    AppConfigs.permissions.MANAGER,
+                ],
+            },
+            (parent, args, { db, user }, info) =>
+                db.payout.findAll({
+                    include: { all: true, nested: true },
+                    where: { manager_id: user.manager_id },
+                })
         ),
-        getManagerPayouts: authenticateResolver({app: [AppConfigs.permissions.OWNER]}, (parent, {manager_id}, {db}, info) => db.payout.findAll({ 
-            include: [ {model: db.members, as: "member" }],
-            where: {manager_id: manager_id}})
+        getManagerPayouts: authenticateResolver(
+            { app: [AppConfigs.permissions.OWNER] },
+            (parent, { manager_id }, { db }, info) =>
+                db.payout.findAll({
+                    include: [{ model: db.members, as: "member" }],
+                    where: { manager_id: manager_id },
+                })
         ),
-        getMemberPayouts: authenticateResolver({app: [AppConfigs.permissions.OWNER,AppConfigs.permissions.MANAGER]}, (parent, {member_id}, {db}, info) => db.payout.findAll({ 
-            include: {all: true, nested: true },
-            where: {member_id: member_id}})
+        getMemberPayouts: authenticateResolver(
+            {
+                app: [
+                    AppConfigs.permissions.OWNER,
+                    AppConfigs.permissions.MANAGER,
+                ],
+            },
+            (parent, { member_id }, { db }, info) =>
+                db.payout.findAll({
+                    include: { all: true, nested: true },
+                    where: { member_id: member_id },
+                })
         ),
-    }
-}
+    },
+};
 
-export default PayoutsResolvers
+export default PayoutsResolvers;

@@ -1,14 +1,16 @@
-module.exports = (sequelize, DataTypes) => {
-    const Application = sequelize.define('applications', {
+const init = (sequelize, DataTypes) => {
+    const Application = sequelize.define(
+        "applications",
+        {
             id: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
-                allowNull: false
+                allowNull: false,
             },
             discord_id: {
                 type: DataTypes.STRING(20),
-                allowNull: false
+                allowNull: false,
             },
             in_game_name: {
                 type: DataTypes.STRING,
@@ -16,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
             },
             in_game_id: {
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
             },
             referred_id: {
                 type: DataTypes.INTEGER,
@@ -26,37 +28,37 @@ module.exports = (sequelize, DataTypes) => {
             },
             play_per_week: {
                 type: DataTypes.STRING(40),
-                allowNull: false
+                allowNull: false,
             },
             company: {
                 type: DataTypes.STRING(5),
-                allowNull: false
+                allowNull: false,
             },
             country: {
                 type: DataTypes.TEXT,
-                allowNull: false
+                allowNull: false,
             },
             why: {
                 type: DataTypes.TEXT,
-                allowNull: false
+                allowNull: false,
             },
             anything: {
                 type: DataTypes.TEXT,
-                allowNull: false
+                allowNull: false,
             },
             status: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                defaultValue: "Received"
+                defaultValue: "Received",
             },
             status_info: {
-                type: DataTypes.TEXT,                
+                type: DataTypes.TEXT,
             },
             paid: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
-                defaultValue: false
-            }
+                defaultValue: false,
+            },
         },
         {
             freezeTableName: true,
@@ -64,4 +66,6 @@ module.exports = (sequelize, DataTypes) => {
     );
 
     return Application;
-}
+};
+
+export default init;

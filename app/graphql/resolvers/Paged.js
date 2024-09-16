@@ -1,15 +1,15 @@
 import {
     CompanyMemberDetailType,
     getPaginatedAllMemberDetails,
-} from "./PagedQueries/GetPaginatedAllMemberDetails";
+} from "./PagedQueries/GetPaginatedAllMemberDetails.js";
 import {
     RankedMembersType,
     getPaginatedMemberRankings,
-} from "./PagedQueries/GetPaginatedMemberRankings";
+} from "./PagedQueries/GetPaginatedMemberRankings.js";
 
-import AppConfigs from "../../configs/app_configs";
-import { authenticateResolver } from "../../domain/auth/resolvers/authenticateResolver";
-import { getPaginatedWebUsers } from "./PagedQueries/GetPaginatedWebUsers";
+import AppConfigs from "../../configs/app_configs.js";
+import { authenticateResolver } from "../../domain/auth/resolvers/authenticateResolver.js";
+import { getPaginatedWebUsers } from "./PagedQueries/GetPaginatedWebUsers.js";
 import { gql } from "apollo-server-express";
 
 export const typeDef = gql`

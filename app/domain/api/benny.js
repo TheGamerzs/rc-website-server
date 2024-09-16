@@ -1,7 +1,4 @@
-import Entity from "../Entity";
-const authentication = require("../sheets/authentication");
-const { google } = require("googleapis");
-import AppConfigs from "../../configs/app_configs";
+import Entity from "../Entity.js";
 
 export default class Benny extends Entity {
     constructor(db, app, api) {

@@ -1,31 +1,33 @@
-module.exports = (sequelize, DataTypes) => {
-    const Payout = sequelize.define('payout', {
+const init = (sequelize, DataTypes) => {
+    const Payout = sequelize.define(
+        "payout",
+        {
             id: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
-                allowNull: false
+                allowNull: false,
             },
             manager_id: {
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
             },
             member_id: {
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
             },
             company: {
                 type: DataTypes.STRING(5),
-                allowNull: false
+                allowNull: false,
             },
             amount: {
                 type: DataTypes.BIGINT,
-                allowNull: false
+                allowNull: false,
             },
             worth: {
                 type: DataTypes.BIGINT,
-                allowNull: false
-            }
+                allowNull: false,
+            },
         },
         {
             freezeTableName: true,
@@ -34,17 +36,19 @@ module.exports = (sequelize, DataTypes) => {
 
     Payout.associate = (models) => {
         Payout.hasOne(models.managers, {
-            foreignKey: 'id',
-            sourceKey: 'manager_id',
-            as: 'manager'
-        })
+            foreignKey: "id",
+            sourceKey: "manager_id",
+            as: "manager",
+        });
 
         Payout.hasOne(models.members, {
-            foreignKey: 'id',
-            sourceKey: 'member_id',
-            as: 'member'
-        })
-    }
+            foreignKey: "id",
+            sourceKey: "member_id",
+            as: "member",
+        });
+    };
 
     return Payout;
-}
+};
+
+export default init;
