@@ -19,7 +19,7 @@
         "graphql": "^16.5.0",
         "helmet": "^4.6.0",
         "mysql2": "^2.3.0",
-        "node-fetch-cache": "^3.0.3",
+        "node-fetch-cache": "^4.0.0",
         "request": "^2.88.2",
         "sequelize": "^6.6.5"
     },
